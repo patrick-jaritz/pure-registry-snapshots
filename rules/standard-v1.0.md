@@ -10,7 +10,7 @@
 >
 > **Provenance of this draft.** v1.0 renumbers and carries forward the **v0.3 tier
 > model** (the three authorship tiers and the disclosure-to-tier computation) together
-> with the **F1/F2 fixes from the adoption pilot** (`docs/standard-v0.3-pilot.md`),
+> with the **F1/F2 fixes from the adoption pilot** (`docs/archive/standard-v0.3-pilot.md`),
 > unchanged. Per the 2026-08-26 decision recorded in `memory/BACKLOG.md`, the version is
 > renumbered to 1.0 for go-live because the number prints permanently on every
 > certificate. The sections below therefore still describe the model in terms of "v0.3"
@@ -592,7 +592,7 @@ the public document viewer.
   condition could never be met and would have blocked adoption indefinitely for a
   reason unrelated to the Standard's quality. The pilot's purpose — does the
   mechanical rule agree with a reviewer? — is served by realistic cases. The first
-  run is `docs/standard-v0.3-pilot.md`, and it immediately found two contradictions
+  run is `docs/archive/standard-v0.3-pilot.md`, and it immediately found two contradictions
   between §2.1 and §4.1, both since fixed. Amending a condition to make it passable
   is a bad habit; recording exactly why, and having the amended condition still bite,
   is the safeguard.)*
