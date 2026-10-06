@@ -256,6 +256,30 @@ def main() -> int:
                       "issued_at", "standard_version"):
             if p.get(field) is not None:
                 print(f"      {field}: {p[field]}")
+        # `trial` from the VERIFIED payload — the same source the live /v/ answer
+        # reads, so offline and live agree. A certificate signed without the field
+        # (every one before it existed) is not a trial certificate; absence is the
+        # old shape, not a failure.
+        trial = p.get("trial") is True
+        if trial:
+            print("NOTE  issued during the registry's TRIAL PHASE (signed into the "
+                  "certificate): trial certificates could be reset; this one is "
+                  "provisional by its own signature")
+        else:
+            print("OK    not a trial certificate (no trial marker in the signature)")
+        # The row and the ledger's issue event repeat the marker. They cannot make
+        # a certificate MORE or LESS trial than its signature says, but a
+        # disagreement is itself a finding, exactly as for status.
+        if (row.get("trial") is True) != trial:
+            print(f"WARN  the stored row says trial={row.get('trial')!r} — the "
+                  "signature wins, and the disagreement is itself a finding")
+        issue_ev = next((ev for ev in events if ev.get("event_type") == "issue"
+                         and ev.get("cert_id") == args.cert), None)
+        if issue_ev is not None and \
+                ((issue_ev.get("payload") or {}).get("trial") is True) != trial:
+            print("WARN  the ledger's issue event disagrees with the signature about "
+                  "the trial marker — the signature wins, and the disagreement is "
+                  "itself a finding")
     else:
         print("WARN  no JWS stored for this certificate — only the ledger attests it")
 
