@@ -360,6 +360,26 @@ The absence of Content Credentials is informationless: most upload pipelines
 strip metadata. Lack of a manifest never penalises an applicant; **only
 present-and-contradictory** manifests do.
 
+**Third-party AI-watermark check.** *(DRAFT addition 2026-10-08, AI-drafted, pending
+PS-GOV-04 review, not adopted.)* As a standard step of the examination, a reviewer runs
+the work and its evidence files through a recognised AI-watermark detector (currently
+Google's SynthID Detector) wherever one exists for the medium; today that covers
+images, audio and video, not text. Because this sends the files to a third party, the
+applicant is asked for consent at submission; declining is recorded and carries no
+penalty, and the step is then skipped. The detector used and its result are recorded in
+the review file.
+
+This check can only show that content **was made with AI**. It cannot show that content
+is human-made: most AI tools embed no such watermark, and a watermark can be removed. A
+negative result is therefore informationless and counts for nothing towards any tier;
+human authorship rests solely on the disclosure, evidence and review steps of this
+Standard. A positive detection on a **Human-Authored or Human-Assisted** submission flags
+it for **deep audit**, as above. Because the detector is a closed, probabilistic service
+whose result the registry cannot independently verify, a detection is never by itself a
+KO-criterion or a basis for revocation: the deep audit decides. On a **Human-Led**
+submission a positive detection is expected and has no effect. The certificate and seal
+make no claim about this check.
+
 ---
 
 ## 7. Attestation
