@@ -41,7 +41,7 @@ Randbemerkungen in einer Sitzung — sind vom Register in das Panel zu
 ### 2.1 Zugang
 
 Zugang haben Mitglieder des Fachbeirats (Systemrolle `board`) und die
-Geschäftsführung (`admin`). Prüfende ohne Beiratsmandat haben keinen Zugang.
+Geschäftsführung (`admin`). Auditor:innen ohne Beiratsmandat haben keinen Zugang.
 
 Der Zugang ist personengebunden. Die Weitergabe von Zugangsdaten ist
 unzulässig; eine Position ist eine persönliche Erklärung.
