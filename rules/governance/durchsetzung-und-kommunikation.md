@@ -46,8 +46,8 @@ braucht.
 
 | Stufe | Auslöser | Wirkung | Entscheidung | Frist |
 |---|---|---|---|---|
-| **1 — Feststellung** | ein Befund in der Stichprobe oder ein begründeter Hinweis | Mitteilung an die Stelle; Gelegenheit zur Äußerung | prüfende Person | Äußerung binnen **10 Arbeitstagen** |
-| **2 — Korrektur** | Befund bestätigt, Einzelfall | betroffene Erklärung wird widerrufen; die Stelle korrigiert öffentlich | prüfende Person | Umsetzung binnen **20 Arbeitstagen** |
+| **1 — Feststellung** | ein Befund in der Stichprobe oder ein begründeter Hinweis | Mitteilung an die Stelle; Gelegenheit zur Äußerung | Auditor:in | Äußerung binnen **10 Arbeitstagen** |
+| **2 — Korrektur** | Befund bestätigt, Einzelfall | betroffene Erklärung wird widerrufen; die Stelle korrigiert öffentlich | Auditor:in | Umsetzung binnen **20 Arbeitstagen** |
 | **3 — Verschärfte Stichprobe** | Befundquote über der veröffentlichten Schwelle | Stichprobenumfang verdoppelt sich für die nächste Periode, **auf Kosten der Stelle** | Geschäftsführung | eine Periode |
 | **4 — Aussetzung des Erklärungsrechts** | Wiederholung, oder Frist der Stufe 2 versäumt | **keine neuen Erklärungen**; bestehende bleiben gültig und werden als „Programm ausgesetzt" gekennzeichnet | Geschäftsführung, nach Anhörung | bis zur Behebung, längstens **6 Monate** |
 | **5 — Entzug** | systematisch, oder vorsätzliche Falscherklärung | Programm entzogen; Erklärungen des betroffenen Zeitraums werden widerrufen | Geschäftsführung, nach Anhörung; Fachbeirat wird unterrichtet | endgültig |
@@ -68,7 +68,7 @@ korrigierbar.
 
 Entsprechend PS-GOV-02 Abschnitt 5 und aus demselben Grund:
 
-- Über Stufen 1 und 2 entscheidet eine **prüfende Person**, die an der
+- Über Stufen 1 und 2 entscheidet eine **Auditor:in**, die an der
   ursprünglichen Zertifizierung nicht mitgewirkt hat.
 - Über Stufen 3 bis 5 entscheidet die **Geschäftsführung**.
 - **Niemand entscheidet über eine Stelle, deren Vertrag er verhandelt hat oder an
@@ -153,7 +153,7 @@ verspricht nichts Nachprüfbares.
 
 ### 7.3 Wer spricht
 
-Die Geschäftsführung. Prüfende Personen äußern sich nicht öffentlich zu Fällen, an
+Die Geschäftsführung. Auditor:innen äußern sich nicht öffentlich zu Fällen, an
 denen sie mitgewirkt haben — weder bestätigend noch dementierend.
 
 ---
