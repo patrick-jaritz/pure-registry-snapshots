@@ -280,6 +280,22 @@ def main() -> int:
             print("WARN  the ledger's issue event disagrees with the signature about "
                   "the trial marker — the signature wins, and the disagreement is "
                   "itself a finding")
+        # D-038 — the work-file fingerprint, from the VERIFIED payload, as the live
+        # /v/ answer reads it. Absent on text works and on every certificate signed
+        # before the field existed: that is the old shape, not a failure.
+        work = p.get("work") if isinstance(p.get("work"), dict) else {}
+        file_hash = work.get("file_sha256")
+        if file_hash:
+            print(f"OK    work file fingerprint (SHA-256, signed): {file_hash}")
+            print("      compare with: sha256sum <the file you were shown>")
+        if row.get("file_sha256") not in (None, file_hash):
+            print(f"WARN  the stored row says file_sha256={row.get('file_sha256')!r} — "
+                  "the signature wins, and the disagreement is itself a finding")
+        if issue_ev is not None and \
+                (issue_ev.get("payload") or {}).get("file_sha256") not in (None, file_hash):
+            print("WARN  the ledger's issue event disagrees with the signature about "
+                  "the work file fingerprint — the signature wins, and the "
+                  "disagreement is itself a finding")
     else:
         print("WARN  no JWS stored for this certificate — only the ledger attests it")
 
