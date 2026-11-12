@@ -11,7 +11,7 @@
 
 ## 1. Zweck
 
-Die Aussagekraft eines PURE-Zertifikats hängt davon ab, dass zwei Prüfende
+Die Aussagekraft eines PURE-Zertifikats hängt davon ab, dass zwei Auditor:innen
 denselben Fall zum gleichen Ergebnis führen. Diese Ordnung regelt, wer prüfen
 und entscheiden darf, wie diese Eignung festgestellt und überwacht wird und
 wann eine Person von einem Fall ausgeschlossen ist.
@@ -22,7 +22,7 @@ wann eine Person von einem Fall ausgeschlossen ist.
 
 | Rolle | Systemrolle | Befugnis |
 |---|---|---|
-| **Prüferin / Prüfer** | `reviewer` | Einreichungen fachlich prüfen und zustimmen oder ablehnen |
+| **Auditorin / Auditor** | `reviewer` | Einreichungen fachlich prüfen und zustimmen oder ablehnen |
 | **Zertifizierungsentscheidung / Ausstellung** | `reviewer`, `admin` | nach Vorliegen von zwei Zustimmungen das Zertifikat ausstellen |
 | **Administration** | `admin` | Aussetzung, Entzug, Wiedereinsetzung; Betrieb; Standardverwaltung |
 | **Standardverantwortung** | Geschäftsführung | Freigabe von Standardversionen (PS-GOV-04) |
@@ -36,7 +36,7 @@ eine Rolle entsteht nicht durch bloßen Systemzugriff.
 
 ## 3. Kompetenzanforderungen
 
-### 3.1 Prüferin / Prüfer
+### 3.1 Auditorin / Auditor
 
 | Anforderung | Mindestmaß | Nachweis |
 |---|---|---|
@@ -90,7 +90,7 @@ Kompetenzüberwachung nach Abschnitt 6 dies ergibt.
 Standards und der Governance-Dokumente, Durchsprache von mindestens drei
 abgeschlossenen Fällen, Erläuterung der Nachweisarten und der Bewertungslogik.
 
-**Kalibrierung.** Neu benannte Prüfende bearbeiten **mindestens fünf
+**Kalibrierung.** Neu benannte Auditor:innen bearbeiten **mindestens fünf
 Kalibrierungsfälle** unabhängig und ohne Kenntnis des Ergebnisses der anderen.
 Verglichen werden:
 
@@ -106,7 +106,7 @@ Ursache eine mehrdeutige Regel, folgt eine Klarstellung im Standard nach
 PS-GOV-04.
 
 **Wiederholung:** mindestens jährlich sowie nach jeder Änderung des Standards,
-die die Entscheidungsregeln berührt, für alle Prüfenden gemeinsam.
+die die Entscheidungsregeln berührt, für alle Auditor:innen gemeinsam.
 
 ---
 
@@ -129,7 +129,7 @@ ausgesetzt, bis eine erneute Kalibrierung bestanden ist.
 
 ### 7.1 Erklärungspflicht
 
-**Vor jeder Prüfung** gibt die prüfende Person eine fallbezogene Erklärung ab,
+**Vor jeder Prüfung** gibt die Auditor:in eine fallbezogene Erklärung ab,
 dass kein Ausschlussgrund nach 7.2 vorliegt. Die Erklärung wird zum Fall
 gespeichert. Eine allgemeine Erklärung „auf Vorrat" genügt nicht — der
 Ausschlussgrund entsteht am konkreten Fall.
@@ -158,8 +158,8 @@ Ausschluss trifft die Geschäftsführung.
 
 ### 7.3 Folge
 
-Bei Vorliegen eines Ausschlussgrundes wird der Fall an eine andere prüfende
-Person übergeben. Ist keine verfügbar, wird der Fall zurückgestellt und die
+Bei Vorliegen eines Ausschlussgrundes wird der Fall an eine andere Auditor:in
+übergeben. Ist keine verfügbar, wird der Fall zurückgestellt und die
 antragstellende Person über die Verzögerung und ihren Grund — nicht über
 Einzelheiten — informiert.
 
@@ -174,7 +174,7 @@ folgt ein Verfahren nach PS-GOV-05.
 
 ## 8. Vertraulichkeit
 
-Alle prüfenden und entscheidenden Personen sind schriftlich zur
+Alle Auditor:innen und entscheidenden Personen sind schriftlich zur
 Vertraulichkeit über alle im Rahmen der Tätigkeit bekannt gewordenen
 Informationen verpflichtet, unbefristet über die Tätigkeit hinaus. Der Umfang
 richtet sich nach PS-GOV-06.
@@ -186,7 +186,7 @@ untersagt.
 
 ---
 
-## 9. Externe Prüfende und Beauftragte
+## 9. Externe Auditor:innen und Beauftragte
 
 Beauftragt das Register externe Personen mit Prüfleistungen, gelten für sie
 dieselben Anforderungen nach den Abschnitten 3 bis 8. Zusätzlich gilt:
@@ -197,7 +197,7 @@ dieselben Anforderungen nach den Abschnitten 3 bis 8. Zusätzlich gilt:
 3. Das Register bleibt für die Leistung verantwortlich und bewertet die
    externe Person nach denselben Maßstäben.
 4. Die antragstellende Person wird auf Verlangen darüber informiert, dass
-   externe Prüfende eingesetzt werden.
+   externe Auditor:innen eingesetzt werden.
 
 ---
 
@@ -206,7 +206,7 @@ dieselben Anforderungen nach den Abschnitten 3 bis 8. Zusätzlich gilt:
 Je Person werden geführt: Benennung mit Datum und Rolle, Nachweise nach
 Abschnitt 3, Einarbeitungsprotokoll, Kalibrierungsergebnisse, jährliche
 Eignungsbewertung, Vertraulichkeitsverpflichtung. Je Fall werden geführt: die
-prüfenden Personen, die Interessenkonflikterklärung, die Entscheidung und ihre
+Auditor:innen, die Interessenkonflikterklärung, die Entscheidung und ihre
 Begründung.
 
 ---
@@ -216,7 +216,7 @@ Begründung.
 | Regel | Stand | Anmerkung |
 |---|---|---|
 | Rollentrennung im System (`reviewer` / `admin`) | **umgesetzt** | rollenbasierte Zugriffsprüfung an jedem Endpunkt |
-| Zwei unterschiedliche prüfende Personen je Ausstellung | **technisch erzwungen** | — |
+| Zwei unterschiedliche Auditor:innen je Ausstellung | **technisch erzwungen** | — |
 | Fallbezogene Interessenkonflikterklärung | ⚠ **offen** | im System nicht erfasst; bis zur Umsetzung schriftlich je Fall |
 | Kalibrierungsfälle | ⚠ **offen** | Verfahren definiert, erster Durchgang steht aus — er sollte **vor** der ersten echten Ausstellung stattfinden. Wiederholung fristüberwacht (`reviewer_calibration`, fällig 2027-08-26) |
 | Stichprobenkontrolle abgeschlossener Fälle | ⚠ **offen** | fristüberwacht (`review_sampling`, quartalsweise, erstmals fällig 2026-11-26) |
