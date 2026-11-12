@@ -79,7 +79,7 @@ denn genau darin liegt der Zweck des Siegels.
    weder gegenüber der Öffentlichkeit noch gegenüber der betroffenen
    zertifikatshaltenden Person.
 5. **Welche Person einen konkreten Fall geprüft oder entschieden hat.**
-   Veröffentlicht wird, dass zwei unabhängige Prüfende zugestimmt haben, nicht
+   Veröffentlicht wird, dass zwei unabhängige Auditor:innen zugestimmt haben, nicht
    wer. Gegenüber der antragstellenden Person wird auf Verlangen die
    entscheidende **Rolle** genannt.
 6. **Der Klartext von Prüfvermerken und Entzugsbegründungen.**
@@ -119,7 +119,7 @@ ist der Zweck der Sache und keine Nebenwirkung.
 
 ## 6. Zugriff innerhalb der Organisation
 
-Zugriff nur nach dem Grundsatz der Erforderlichkeit. Prüfende sehen die Fälle
+Zugriff nur nach dem Grundsatz der Erforderlichkeit. Auditor:innen sehen die Fälle
 ihrer Warteschlange; administrative Zugriffe auf Nutzer- und Falldaten sind
 protokolliert. Ein Zugriff ohne Fallbezug ist unzulässig.
 
