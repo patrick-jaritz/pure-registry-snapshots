@@ -190,7 +190,7 @@ The Mark Holder's IP address and user agent are recorded on the
 attestation, not the licence acceptance, to limit duplicate PII storage.
 
 Acceptance of this licence is a precondition for the issuance of the
-certificate. A submission may not be `submit`-ted to the reviewer queue
+certificate. A submission may not be `submit`-ted to the auditor queue
 without `license_accepted_at` present.
 
 ---
