@@ -26,7 +26,7 @@ Berechtigte, Fristen und Entscheidungswege und werden getrennt geführt.
 | Verfahren | Wer kann es einleiten | Gegenstand |
 |---|---|---|
 | **Einspruch** (*appeal*) | die von der Entscheidung betroffene Person oder Organisation | eine Entscheidung des Registers über die eigene Einreichung oder das eigene Zertifikat — Ablehnung, Aussetzung, Entzug, Verweigerung der Wiedereinsetzung, Einstufung in eine andere Kategorie oder Sicherungsstufe als beantragt |
-| **Beschwerde** (*complaint*) | jede Person | alles andere: Bearbeitungsdauer, Verhalten von Prüfenden, Erreichbarkeit, Entgelte, Datenschutz, Verstöße gegen PS-GOV-01 |
+| **Beschwerde** (*complaint*) | jede Person | alles andere: Bearbeitungsdauer, Verhalten von Auditor:innen, Erreichbarkeit, Entgelte, Datenschutz, Verstöße gegen PS-GOV-01 |
 | **Einwand** (*challenge*) | jede Person, ohne Anmeldung | die Behauptung, ein **bestehendes** Zertifikat sei zu Unrecht ausgestellt oder inzwischen unrichtig |
 
 Ein Einwand ist kein Einspruch: er richtet sich nicht gegen eine dem
@@ -100,11 +100,12 @@ beanstandeten Vorgang **nicht mitgewirkt** haben.
 Das Register ist klein. Deshalb gilt die folgende Rangfolge, und sie ist
 verbindlich, nicht bloß empfohlen:
 
-1. **Eine unbeteiligte prüfende Person des Registers**, sofern vorhanden.
-2. Ist keine unbeteiligte Person verfügbar — weil alle Prüfenden am Fall
+1. **Eine unbeteiligte Auditor:in des Registers**, sofern vorhanden.
+2. Ist keine unbeteiligte Person verfügbar — weil alle Auditor:innen am Fall
    mitgewirkt haben oder befangen sind — entscheidet **ein hierfür benanntes
    Mitglied des Fachbeirats**, das weder am Fall mitgewirkt hat noch eine
-   operative Rolle im Register innehat (PS-GOV-01 Abschnitt 8).
+   operative Rolle im Register innehat (PS-GOV-01 Abschnitt 8). Ein Mitglied,
+   das zugleich Auditor:in ist, hat stets eine operative Rolle.
 3. Ist auch das nicht möglich, benennt das Register **eine externe fachkundige
    Person** und trägt deren Kosten.
 
@@ -132,7 +133,7 @@ Die Entscheidung ergeht in Textform und ist zu begründen. Möglich sind:
 
 | Ergebnis | Folge |
 |---|---|
-| **Stattgegeben** | Die angefochtene Entscheidung wird aufgehoben. Bei zu Unrecht abgelehnter Einreichung wird der Fall erneut geprüft — durch andere Prüfende als beim ersten Mal. Bei zu Unrecht entzogenem Zertifikat erfolgt die Wiedereinsetzung; sie erzeugt ein eigenes Ledger-Ereignis, der Entzug bleibt als historische Tatsache sichtbar. |
+| **Stattgegeben** | Die angefochtene Entscheidung wird aufgehoben. Bei zu Unrecht abgelehnter Einreichung wird der Fall erneut geprüft — durch andere Auditor:innen als beim ersten Mal. Bei zu Unrecht entzogenem Zertifikat erfolgt die Wiedereinsetzung; sie erzeugt ein eigenes Ledger-Ereignis, der Entzug bleibt als historische Tatsache sichtbar. |
 | **Teilweise stattgegeben** | Zum Beispiel: Ausstellung erfolgt, aber in einer anderen Kategorie oder Sicherungsstufe als beantragt. Die Abweichung wird begründet. |
 | **Abgewiesen** | Die Entscheidung bleibt bestehen. Der Bescheid nennt die tragenden Gründe und die Fundstelle im Standard. |
 
@@ -210,3 +211,4 @@ Ergebnisverteilung sowie die mittlere Bearbeitungsdauer.
 | Version | Datum | Änderung |
 |---|---|---|
 | 0.1 | 2026-08-26 | Erstfassung |
+| 0.1 (Probebetrieb) | 2026-11-11 | Prüfende heißen Auditor:innen; Abschnitt 5: Auditor:innen im Fachbeirat sind stets operativ |
