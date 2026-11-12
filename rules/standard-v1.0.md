@@ -70,7 +70,7 @@ Where this Standard is ambiguous, it is read in favour of *disclosure over conce
 *(The third sentence above — that the Standard polices neither literary quality nor
 factual accuracy nor editorial choices — already exists as prose in §1. §1.1 does not
 change §1; it **promotes** that limit, together with the two interpretive maxims, from
-prose to a **citable interpretive rule** for borderline cases and reviewer calibration.)*
+prose to a **citable interpretive rule** for borderline cases and auditor calibration.)*
 
 ---
 
@@ -299,7 +299,7 @@ the disclosure:
   nothing generative to lead; the work is Human-Assisted or Human-Authored).
 
 These intake rejections are the **KO-criteria**: bright-line disqualifiers that
-no reviewer discretion can override. Beyond them, two independent reviewers
+no auditor discretion can override. Beyond them, two independent auditors
 must still find the disclosure **plausible and complete** before issuance
 (§7), and any false field is a basis for revocation (§10).
 
@@ -361,7 +361,7 @@ strip metadata. Lack of a manifest never penalises an applicant; **only
 present-and-contradictory** manifests do.
 
 **Third-party AI-watermark check.** *(DRAFT addition 2026-10-08, AI-drafted, pending
-PS-GOV-04 review, not adopted.)* As a standard step of the examination, a reviewer runs
+PS-GOV-04 review, not adopted.)* As a standard step of the examination, a auditor runs
 the work and its evidence files through a recognised AI-watermark detector (currently
 Google's SynthID Detector) wherever one exists for the medium; today that covers
 images, audio and video, not text. Because this sends the files to a third party, the
@@ -393,7 +393,7 @@ applicant. The attestation records:
 - A timestamp, IP, and identity reference
 - A SHA-256 hash of the canonical attestation statement
 
-Issuance additionally requires **two independent reviewers** to approve the
+Issuance additionally requires **two independent auditors** to approve the
 submission, finding the declared tier consistent with the disclosure and
 evidence and the disclosure plausible and complete. False attestation is a
 basis for revocation under §10.
@@ -408,6 +408,9 @@ A certificate appears in the public registry at `/v/<cert_id>` with:
 - **Authorship tier** (and, where present, the separate identity-assurance
   attribute per §3)
 - Work fingerprint (SHA-256 of canonical text content)
+- For image, audio and video works: work file fingerprint (SHA-256 of the work file,
+  computed in the applicant's browser; the file itself is not transmitted). Anyone holding
+  the file can recompute it and compare it with the signed value.
 - AI disclosure profile, shown as a plain-language **profile** (not a score)
 - Provenance summary (C2PA findings + evidence-type list + consistency check)
 - Issuance timestamp and ledger position
@@ -525,7 +528,10 @@ PS-GOV-02 hearing right and must be decided separately with the Fachbeirat.
 
 <!-- DRAFT NOTE: a stronger, genuinely third-party-verifiable work fingerprint — so that
      surveillance could become server-verifiable rather than a holder re-attestation — is a
-     FUTURE enhancement, tracked in memory/BACKLOG.md. It is NOT part of v1.0. -->
+     FUTURE enhancement, tracked in memory/BACKLOG.md. It is NOT part of v1.0.
+     The work file fingerprint above (D-038) is a first step: it binds a certificate to
+     one exact file, but an edited file simply has a different hash, so surveillance of
+     later versions still rests on the holder. -->
 
 ---
 
@@ -602,7 +608,7 @@ the public document viewer.
   tier name plus the disclosure profile. No derived figure, no score.
 - **Identity-assurance procedure** (§3): if/when revived, define it as a
   separate, rule-based attribute, not a tier.
-- **Pilot:** confirm the §4.1 computed tier matches reviewer judgement across at
+- **Pilot:** confirm the §4.1 computed tier matches auditor judgement across at
   least 10 cases spanning the tier boundaries, before the Standard is put in force.
   Cases may be **constructed** — the requirement is that they are realistic and sit
   on the boundaries, not that they are historical.
@@ -611,7 +617,7 @@ the public document viewer.
   registry has none, and will have none before certificate #1, so as written the
   condition could never be met and would have blocked adoption indefinitely for a
   reason unrelated to the Standard's quality. The pilot's purpose — does the
-  mechanical rule agree with a reviewer? — is served by realistic cases. The first
+  mechanical rule agree with a auditor? — is served by realistic cases. The first
   run is `docs/archive/standard-v0.3-pilot.md`, and it immediately found two contradictions
   between §2.1 and §4.1, both since fixed. Amending a condition to make it passable
   is a bad habit; recording exactly why, and having the amended condition still bite,
