@@ -23,7 +23,7 @@ Diese Richtlinie regelt, wie das PURE-Register — betrieben von der
 seine Unparteilichkeit sichert.
 
 Sie gilt für alle Personen, die an einer Zertifizierungsentscheidung mitwirken:
-Geschäftsführung, Prüferinnen und Prüfer, Zertifizierungsentscheiderinnen und
+Geschäftsführung, Auditorinnen und Auditoren, Zertifizierungsentscheiderinnen und
 -entscheider, Administratorinnen und Administratoren, Mitglieder des
 Fachbeirats sowie beauftragte Externe.
 
@@ -56,14 +56,14 @@ Daraus folgen drei Sätze, die das Register als bindend behandelt:
 | Funktion | Wer | Trennung |
 |---|---|---|
 | Antragsannahme und Vollständigkeitsprüfung | Register (Betrieb) | — |
-| Fachliche Prüfung der Einreichung | Prüferin/Prüfer (Rolle `reviewer`) | mindestens **zwei voneinander unabhängige** Prüfende müssen zustimmen |
+| Fachliche Prüfung der Einreichung | Auditorin/Auditor (Rolle `reviewer`) | mindestens **zwei voneinander unabhängige** Auditor:innen müssen zustimmen |
 | Zertifizierungsentscheidung und Ausstellung | Rolle `reviewer` oder `admin` | **soll** nicht durch dieselbe Person erfolgen, die den Fall geprüft hat (siehe Abschnitt 10) |
 | Aussetzung, Entzug, Wiedereinsetzung | Rolle `admin` | siehe PS-GOV-05 |
 | Entwicklung des Standards | Geschäftsführung, begutachtet durch den Fachbeirat | siehe PS-GOV-04 |
 | Bearbeitung von Einsprüchen | Person, die an der angefochtenen Entscheidung **nicht** mitgewirkt hat | siehe PS-GOV-02 |
 
 Eine einzelne Zustimmung reicht für keine Ausstellung. Widerspricht eine
-prüfende Person, ist die Einreichung abgelehnt; ein „Übersteuern" durch die
+Auditor:in, ist die Einreichung abgelehnt; ein „Übersteuern" durch die
 Geschäftsführung ist nicht vorgesehen und wäre ein meldepflichtiger Verstoß
 nach Abschnitt 9.
 
@@ -116,7 +116,7 @@ Stand v0.1:
 | U2 | Wenige große Kunden (Verlag, Newsroom) erzeugen Konzentrationsabhängigkeit | Eigeninteresse | mittel, steigend | Kennzahl „Umsatzanteil größter Kunde" in der Managementbewertung; ab 25 % Anteil Vorlage an den Fachbeirat |
 | U3 | Personelle Doppelrolle: Personen, die das System entwickeln und betreiben, sind zugleich Mitglied des Fachbeirats | Selbstprüfung | **hoch** | Betroffene Mitglieder stimmen in Unparteilichkeitsfragen und bei Einsprüchen nicht mit (Abschnitt 8); Offenlegung auf der Fachbeiratsseite |
 | U4 | Sehr kleine Organisation: dieselbe Person kann prüfen, entscheiden und widerrufen | Selbstprüfung | **hoch** | Zwei-Personen-Zustimmung technisch erzwungen; Trennung von Prüfung und Ausstellung derzeit organisatorisch, nicht technisch (Abschnitt 10) |
-| U5 | Persönliche Bekanntschaft mit Antragstellenden im kleinen österreichischen Markt | Vertrautheit | mittel | Fallbezogene Interessenkonflikterklärung nach PS-GOV-03; Ausschluss und Übergabe an die zweite prüfende Person |
+| U5 | Persönliche Bekanntschaft mit Antragstellenden im kleinen österreichischen Markt | Vertrautheit | mittel | Fallbezogene Interessenkonflikterklärung nach PS-GOV-03; Ausschluss und Übergabe an die zweite Auditor:in |
 | U6 | Öffentlicher Druck, Referenzkunden nennen zu können | Interessenvertretung | mittel | Keine Nennung zertifizierter Kundschaft in der Vermarktung ohne deren Zustimmung; das öffentliche Register ist die einzige Referenzliste |
 | U7 | Druck einer wirtschaftlich bedeutenden Partei, einen Entzug zu unterlassen oder zu erzwingen | Einschüchterung | mittel | Entzugsgründe abschließend nach PS-GOV-05; jede Entscheidung erzeugt einen unveränderlichen Ledger-Eintrag |
 | U8 | Abhängigkeit von einer einzelnen Person mit Zugriff auf den Signaturschlüssel | Eigeninteresse / Betrieb | **hoch** | Schlüsselverwahrung nach `docs/key-custody.md`; Wechsel des Schlüssels ist erkennbar und wird protokolliert |
@@ -131,7 +131,7 @@ sondern dass die Maßnahme dauerhaft wirksam gehalten und überprüft werden mus
 Das Register hält die folgenden Maßnahmen dauerhaft vor:
 
 1. **Zwei-Personen-Zustimmung.** Eine Ausstellung setzt die Zustimmung von
-   mindestens zwei unterschiedlichen prüfenden Personen voraus. Die Prüfung
+   mindestens zwei unterschiedlichen Auditor:innen voraus. Die Prüfung
    erfolgt für jede Person getrennt; eine zweite Zustimmung derselben Person
    wird abgewiesen.
 2. **Fallbezogene Interessenkonflikterklärung** vor jeder Prüfung
@@ -204,6 +204,21 @@ stillschweigend zu lassen. Solange er besteht, gilt:
   Unparteilichkeitsausschuss ist Voraussetzung für einen späteren
   Akkreditierungsantrag und in Abschnitt 10 als offener Punkt geführt.
 
+**Fachbeirat und Auditor:innen sind getrennt (Entscheidung der Geschäftsführung
+vom 11.11.2026, Probebetrieb).** Der Fachbeirat berät fachlich und ist
+Einspruchsinstanz; er prüft keine Einreichungen. Einreichungen prüfen
+Auditor:innen. Ein Mitglied des Fachbeirats darf zugleich Auditor:in sein. Dann
+gilt:
+
+- Es ist ein Mitglied mit operativer Rolle im Sinne dieses Abschnitts und wirkt
+  an Unparteilichkeitsbeschlüssen und Einspruchsentscheidungen nicht mit.
+- Es führt zwei getrennte Zugänge: einen als Mitglied des Fachbeirats (Rolle
+  `board`) und einen als Auditor:in (Rolle `reviewer`). Das Mitgliederregister
+  verknüpft beide und veröffentlicht, dass das Mitglied zugleich Auditor:in ist.
+- Mindestens zwei Mitglieder des Fachbeirats haben keine Auditor:innen-Rolle,
+  damit Einsprüche und Unparteilichkeitsfragen besetzt bleiben. Das System
+  erzwingt das bei der Verknüpfung.
+
 Sitzungen des Fachbeirats werden protokolliert. Das Protokoll hält Teilnahme,
 behandelte Gegenstände, abgegebene Empfehlungen und den Umgang des Registers
 mit abweichenden Empfehlungen fest. Weicht das Register von einer Empfehlung
@@ -237,8 +252,8 @@ eine unzutreffende Zusicherung wäre.
 
 | Regel | Stand | Anmerkung |
 |---|---|---|
-| Zwei-Personen-Zustimmung vor Ausstellung | **technisch erzwungen** | zwei verschiedene prüfende Personen erforderlich; eine Ablehnung beendet den Fall |
-| Ausstellung durch eine an der Prüfung unbeteiligte Person | ⚠ **offen** | derzeit darf jede Person mit der Rolle `reviewer` oder `admin` ausstellen, auch eine der prüfenden Personen |
+| Zwei-Personen-Zustimmung vor Ausstellung | **technisch erzwungen** | zwei verschiedene Auditor:innen erforderlich; eine Ablehnung beendet den Fall |
+| Ausstellung durch eine an der Prüfung unbeteiligte Person | ⚠ **offen** | derzeit darf jede Person mit der Rolle `reviewer` oder `admin` ausstellen, auch eine der Auditor:innen |
 | Entzug im Vier-Augen-Prinzip | ⚠ **offen** | derzeit genügt eine einzelne Person mit der Rolle `admin`; gleiches gilt für die Wiedereinsetzung |
 | Fallbezogene Interessenkonflikterklärung | ⚠ **offen** | organisatorisch vorgesehen, im System noch nicht erfasst |
 | Grundcode statt Freitext im Ledger | **technisch erzwungen** | geschlossenes Vokabular, Freitext nur im veränderlichen Prüfvermerk |
@@ -255,3 +270,4 @@ eine unzutreffende Zusicherung wäre.
 | Version | Datum | Änderung |
 |---|---|---|
 | 0.1 | 2026-08-26 | Erstfassung |
+| 0.1 (Probebetrieb) | 2026-11-11 | Prüfende heißen Auditor:innen; Abschnitt 8: Trennung von Fachbeirat und Auditor:innen, Doppelrolle |
