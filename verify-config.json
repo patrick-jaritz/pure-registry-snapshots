@@ -1,0 +1,9 @@
+{
+  "final": false,
+  "issuer": "PURE Siegel",
+  "key_id": "pure-key-v1",
+  "key_sources": [],
+  "live_url": "https://pure-certification.com",
+  "pubkey_b64": "gyjrZudUezo/+G0rpfZvKyY1eazV3I8yU15IU//Tlwo=",
+  "snapshot": "snapshots/pure-registry-snapshot-2026-11.json"
+}
