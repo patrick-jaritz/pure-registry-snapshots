@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>PURE · Zertifikat prüfen</title>
+<script>
+// Static hosts have no server-side routing. A printed QR code points at
+// /v/<id>; this page hands the id to the verifier on the index page.
+(function () {
+  var m = location.pathname.match(/\/v\/([A-Za-z0-9-]{1,40})\/?$/);
+  var base = location.pathname.replace(/\/v\/[^/]*\/?$/, "/").replace(/[^/]*$/, "");
+  location.replace(base + (m ? "?cert=" + encodeURIComponent(m[1]) : ""));
+})();
+</script>
+</head>
+<body><p><a href="./">Zertifikat prüfen</a></p></body>
+</html>
