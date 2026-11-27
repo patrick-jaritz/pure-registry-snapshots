@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>PURE · Zertifikat prüfen</title>
+<style>
+  :root { --ink:#1a1a1a; --paper:#fbfaf7; --graphite:#5b5b5b; --rule:#d9d6cf; --valid:#2f6b3f; --warn:#8a5a00; --fail:#9b2c2c; }
+  @media (prefers-color-scheme: dark) { :root { --ink:#ecebe7; --paper:#151515; --graphite:#a7a59f; --rule:#3a3936; --valid:#7fc18f; --warn:#e0b25c; --fail:#ef8b8b; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 44rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+  h1 { font-size: 1.6rem; margin: .2rem 0 1rem; font-weight: 600; }
+  h2 { font-size: 1.1rem; margin: 2rem 0 .5rem; font-weight: 600; }
+  .overline { text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; color: var(--graphite); }
+  .band { border:1px solid var(--rule); padding:.75rem 1rem; margin:0 0 1.25rem; }
+  .mono, code { font-family: ui-monospace, "JetBrains Mono", Menlo, monospace; font-size: .85em; word-break: break-all; }
+  form { display:flex; gap:.5rem; flex-wrap: wrap; }
+  input[type=text] { flex:1 1 12rem; padding:.55rem .7rem; font: inherit; border:1px solid var(--rule); background:transparent; color:inherit; }
+  button { padding:.55rem 1rem; font: inherit; border:1px solid var(--ink); background:var(--ink); color:var(--paper); cursor:pointer; }
+  dl { display:grid; grid-template-columns: max-content 1fr; gap:.35rem 1rem; margin:0; }
+  dt { color: var(--graphite); }
+  dd { margin:0; }
+  ul.checks { list-style:none; padding:0; margin:0; }
+  ul.checks li { padding:.2rem 0; }
+  .ok::before { content:"✓ "; color:var(--valid); }
+  .warn::before { content:"! "; color:var(--warn); }
+  .fail::before { content:"✗ "; color:var(--fail); }
+  .status { font-size:1.25rem; font-weight:600; margin:.5rem 0 1rem; }
+  .status.valid { color: var(--valid); }
+  .status.revoked, .status.missing { color: var(--fail); }
+  .muted { color: var(--graphite); font-size: .9rem; }
+  [hidden] { display:none !important; }
+  @media (max-width: 30rem) { dl { grid-template-columns: 1fr; gap: 0; } dd { margin-bottom: .6rem; } }
+</style>
+</head>
+<body>
+<main>
+  <p class="overline">PURE · Registerabzug</p>
+  <h1>Zertifikat prüfen</h1>
+
+  <div class="band" id="band" hidden></div>
+
+  <form id="form">
+    <input type="text" id="cert" name="cert" placeholder="PS-XXXXXXXX" autocomplete="off" spellcheck="false" aria-label="Zertifikats-ID">
+    <button type="submit">Prüfen</button>
+  </form>
+
+  <section id="result" aria-live="polite"></section>
+
+  <section id="filecheck" hidden>
+    <h2>Datei vergleichen</h2>
+    <p class="muted">Wählen Sie die Datei, die Ihnen gezeigt wurde. Der Fingerabdruck wird nur in Ihrem Browser berechnet; die Datei verlässt Ihr Gerät nicht.</p>
+    <input type="file" id="file">
+    <p id="fileresult"></p>
+  </section>
+
+  <h2>Was diese Seite prüft</h2>
+  <ul class="checks" id="checks"><li class="muted">Wird geladen …</li></ul>
+
+  <h2>Woher der Schlüssel kommt</h2>
+  <p class="muted">Diese Seite prüft den Registerabzug gegen den öffentlichen Schlüssel unten. Ein Abzug, der zu einem Schlüssel aus derselben Quelle passt, beweist nur, dass beide vom selben Absender stammen. Vergleichen Sie den Schlüssel deshalb mit einer Quelle, die dieser Seite nicht gehört.</p>
+  <ul class="muted" id="sources" hidden></ul>
+  <dl>
+    <dt>Schlüssel-ID</dt><dd class="mono" id="kid">–</dd>
+    <dt>Öffentlicher Schlüssel</dt><dd class="mono" id="pub">–</dd>
+    <dt>Registerabzug</dt><dd class="mono" id="snap">–</dd>
+  </dl>
+  <p class="muted">Ohne Browser prüfen: <code>python3 verify-snapshot.py &lt;abzug.json&gt; --pubkey &lt;schlüssel&gt; --cert PS-XXXXXXXX</code> (liegt im selben Repository).</p>
+  <p class="muted">PURE prüft den Entstehungsprozess eines Werks anhand von Angaben und Nachweisen. PURE erkennt KI nicht technisch.</p>
+</main>
+
+<script type="module">
+import { checkCertificate, verifySnapshot, parseJson, ed25519Supported, sha256Hex } from "./verify.mjs";
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const CATEGORY = { human_authored: "AUCTOR (ohne KI erstellt)", human_led: "DUCTOR (menschlich geführt, KI offengelegt)" };
+const STATUS = { valid: "Gültig", revoked: "Widerrufen" };
+const CHECK_TEXT = {
+  payload_sha256: "Prüfsumme des Abzugs stimmt",
+  signature: "Signatur des Abzugs passt zum öffentlichen Schlüssel",
+  chain: "Ereigniskette lückenlos, alle Hashes nachgerechnet",
+  head: "Kopf der Kette stimmt mit dem letzten Ereignis überein",
+  counts: "Anzahl der Einträge stimmt mit dem Inhalt überein",
+  no_anchor: "Kein Bitcoin-Zeitstempel im Abzug: der Inhalt ist belegbar, sein Alter nicht",
+  schema: "Unbekanntes Dateiformat",
+  no_key: "Kein öffentlicher Schlüssel hinterlegt",
+  key_mismatch: "Die Datei nennt einen anderen Schlüssel als den veröffentlichten",
+  seq: "Ereigniskette hat eine Lücke",
+  event_hash: "Ein Ereignis wurde verändert",
+};
+const fmtDate = (iso) => { try { return new Date(iso).toLocaleDateString("de-AT", { year:"numeric", month:"long", day:"numeric" }); } catch { return iso; } };
+
+let report = null, config = null;
+
+function certFromUrl() {
+  const q = new URLSearchParams(location.search).get("cert");
+  return q && /^[A-Za-z0-9-]{1,40}$/.test(q) ? q.toUpperCase() : "";
+}
+
+async function load() {
+  if (!(await ed25519Supported())) {
+    $("checks").innerHTML = `<li class="fail">Dieser Browser kann Ed25519-Signaturen nicht prüfen. Bitte einen aktuellen Browser verwenden oder das Prüfprogramm <code>verify-snapshot.py</code> nutzen.</li>`;
+    return;
+  }
+  config = await (await fetch("verify-config.json", { cache: "no-cache" })).json();
+  const snapPath = config.snapshot;
+  $("kid").textContent = config.key_id || "–";
+  $("pub").textContent = config.pubkey_b64 || "–";
+  $("snap").textContent = snapPath || "–";
+  const sources = Array.isArray(config.key_sources) ? config.key_sources : [];
+  if (sources.length) {
+    $("sources").hidden = false;
+    $("sources").innerHTML = sources.map((s) => `<li>${esc(s)}</li>`).join("");
+  }
+  const text = await (await fetch(snapPath, { cache: "no-cache" })).text();
+  report = await verifySnapshot(parseJson(text), config.pubkey_b64);
+  $("checks").innerHTML = report.checks.map((c) =>
+    `<li class="${c.level}">${esc(CHECK_TEXT[c.code] || c.text)}</li>`).join("");
+  const stand = report.generated_at ? fmtDate(report.generated_at) : "?";
+  $("band").hidden = false;
+  $("band").innerHTML = config.final
+    ? `<strong>PURE stellt keine Zertifikate mehr aus.</strong> Stand des Registers: ${esc(stand)}. Diese Seite prüft den letzten signierten Registerabzug, ohne Server von PURE.`
+    : `Ersatz-Prüfseite. Sie prüft den signierten Registerabzug vom ${esc(stand)} ohne Server von PURE. Neuere Zertifikate stehen erst im nächsten Abzug${config.live_url ? `; aktuell prüfen Sie unter <a href="${esc(config.live_url)}">${esc(config.live_url.replace(/^https?:\/\//, ""))}</a>` : ""}.`;
+}
+
+function renderCert(c) {
+  if (!report || !report.ok) {
+    $("result").innerHTML = `<p class="status missing">Der Registerabzug konnte nicht bestätigt werden. Bitte keinem Ergebnis dieser Seite vertrauen.</p>`;
+    return;
+  }
+  if (!c.found) {
+    $("result").innerHTML = `<p class="status missing">${esc(c.cert_id)} steht nicht in diesem Registerabzug.</p>
+      <p class="muted">Ein Zertifikat, das nach dem Stand dieses Abzugs ausgestellt wurde, erscheint erst im nächsten.</p>`;
+    $("filecheck").hidden = true;
+    return;
+  }
+  const rows = [];
+  const add = (k, v, mono) => rows.push(`<dt>${k}</dt><dd${mono ? ' class="mono"' : ""}>${esc(v)}</dd>`);
+  if (c.title) add("Titel", c.title);
+  if (c.facts.category) add("Kategorie", CATEGORY[c.facts.category] || c.facts.category);
+  if (c.work_type) add("Werkart", c.work_type, true);
+  if (c.facts.issued_at) add("Ausgestellt", fmtDate(c.facts.issued_at));
+  if (c.facts.standard_version) add("Standard", c.facts.standard_version);
+  if (c.facts.assurance_level) add("Sicherungsstufe", c.facts.assurance_level);
+  if (c.file_sha256) add("Fingerabdruck der Werkdatei (SHA-256)", c.file_sha256, true);
+  if (c.facts.content_sha256) add("Fingerabdruck der Angaben", c.facts.content_sha256, true);
+  add("Zertifikats-ID", c.cert_id, true);
+
+  const sigLine = c.jws
+    ? (c.jws.ok ? `<li class="ok">Zertifikat ist mit dem Schlüssel ${esc(c.jws.kid)} signiert</li>`
+                : `<li class="fail">Signatur des Zertifikats stimmt nicht</li>`)
+    : `<li class="warn">Keine Zertifikatssignatur gespeichert, nur die Ereigniskette belegt es</li>`;
+  const statusText = STATUS[c.status] || "Unbekannt";
+  const statusClass = c.jws && !c.jws.ok ? "missing" : (c.status || "missing");
+  $("result").innerHTML = `
+    <p class="status ${statusClass}">${c.jws && !c.jws.ok ? "Nicht bestätigt" : esc(statusText)}${c.via_scope ? " (durch einen Sammelwiderruf)" : ""}</p>
+    ${c.trial ? `<p class="band">Ausgestellt in der Testphase des Registers. Das steht in der Signatur des Zertifikats selbst.</p>` : ""}
+    <dl>${rows.join("")}</dl>
+    <ul class="checks" style="margin-top:1rem">
+      <li class="ok">Status aus der Ereigniskette abgeleitet (Ereignis ${esc(c.status_seq)})</li>
+      ${sigLine}
+    </ul>`;
+  $("filecheck").hidden = !c.file_sha256;
+  $("fileresult").textContent = "";
+  $("file").value = "";
+  $("file").onchange = async (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    const h = await sha256Hex(new Uint8Array(await f.arrayBuffer()));
+    $("fileresult").innerHTML = h === c.file_sha256
+      ? `<span class="ok">Die Datei ist genau die zertifizierte Datei.</span>`
+      : `<span class="fail">Die Datei ist nicht die zertifizierte Datei (Fingerabdruck ${esc(h)}).</span>`;
+  };
+}
+
+async function run(id) {
+  if (!id) return;
+  $("cert").value = id;
+  history.replaceState(null, "", "?cert=" + encodeURIComponent(id));
+  renderCert(await checkCertificate(report || {}, id).catch(() => ({ found: false, cert_id: id })));
+}
+
+$("form").addEventListener("submit", (e) => { e.preventDefault(); run($("cert").value.trim().toUpperCase()); });
+
+load().then(() => run(certFromUrl())).catch((e) => {
+  $("checks").innerHTML = `<li class="fail">Registerabzug konnte nicht geladen werden (${esc(e.message)}).</li>`;
+});
+</script>
+</body>
+</html>
